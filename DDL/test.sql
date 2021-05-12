@@ -1,0 +1,26 @@
+CREATE TABLE customer (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(100) NOT NULL,
+	placed DATE NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE product (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	product_name VARCHAR(200) NOT NULL,
+	price INT NOT NULL,
+	inStock TINYINT NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	placed DATE NOT NULL,
+	quantity INT NOT NULL,
+	customer_id INT UNSIGNED DEFAULT NULL,
+	product_id INT UNSIGNED DEFAULT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (customer_id) REFERENCES customer (id),
+	FOREIGN KEY (product_id) REFERENCES product (id)
+);
